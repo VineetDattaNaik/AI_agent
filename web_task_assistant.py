@@ -19,9 +19,15 @@ import base64
 from PIL import Image as PILImage
 from urllib.parse import urljoin
 import time
+from dotenv import load_dotenv
 
-# Initialize the Gemini client with your API key
-GOOGLE_API_KEY = "AIzaSyD-_wkTNk_dTFbU2KspvpxGr0VOmYArMNA"  # Replace with your actual API key
+# Load environment variables from .env file
+load_dotenv()
+
+# Initialize the Gemini client with API key from .env
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+if not GOOGLE_API_KEY:
+    raise ValueError("GOOGLE_API_KEY not found in .env file")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 def interpret_task(task_description):

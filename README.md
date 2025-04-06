@@ -1,4 +1,4 @@
-# Web Task Assistant 🤖
+# Web Task Assistant
 
 > A Python-based web task assistant powered by Google's Gemini AI that interprets tasks, extracts web information, and generates PDF reports.
 
@@ -8,11 +8,11 @@
 
 ## Features
 
-- 🧠 AI-Powered Task Interpretation using Gemini
-- 🌐 Smart Web Scraping with retry mechanisms
-- 📊 Visual Reports with charts and images
-- ⚡ Robust error handling and fallback systems
-- 📈 Dynamic chart generation (Bar, Pie, Line)
+- AI-Powered Task Interpretation using Gemini
+- Smart Web Scraping with retry mechanisms
+- Visual Reports with charts and images
+- Robust error handling and fallback systems
+- Dynamic chart generation (Bar, Pie, Line)
 
 ## Installation
 
@@ -82,15 +82,6 @@ web-task-assistant/
 3. Commit changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
-
-## License
-
-MIT License - see [`LICENSE`](LICENSE) for details
-
-## Support
-
-- Issues: [GitHub Issues](https://github.com/yourusername/web-task-assistant/issues)
-- Email: your.email@example.com
 
 ## Roadmap
 

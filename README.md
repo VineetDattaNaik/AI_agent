@@ -1,4 +1,4 @@
-# Web Task Assistant 🤖
+# Web Task Assistant
 
 > A Python-based web task assistant powered by Google's Gemini AI that interprets tasks, extracts web information, and generates PDF reports.
 
@@ -8,11 +8,11 @@
 
 ## Features
 
-- 🧠 AI-Powered Task Interpretation using Gemini
-- 🌐 Smart Web Scraping with retry mechanisms
-- 📊 Visual Reports with charts and images
-- ⚡ Robust error handling and fallback systems
-- 📈 Dynamic chart generation (Bar, Pie, Line)
+- AI-Powered Task Interpretation using Gemini
+- Smart Web Scraping with retry mechanisms
+- Visual Reports with charts and images
+- Robust error handling and fallback systems
+- Dynamic chart generation (Bar, Pie, Line)
 
 ## Installation
 

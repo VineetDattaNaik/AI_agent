@@ -4,6 +4,7 @@ from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
 import json
 import os
+from dotenv import load_dotenv
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -20,8 +21,14 @@ from PIL import Image as PILImage
 from urllib.parse import urljoin
 import time
 
-# Initialize the Gemini client with your API key
-GOOGLE_API_KEY = "AIzaSyD-_wkTNk_dTFbU2KspvpxGr0VOmYArMNA"  # Replace with your actual API key
+# Load environment variables
+load_dotenv()
+
+# Initialize the Gemini client with your API key from environment variable
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+if not GOOGLE_API_KEY:
+    raise ValueError("Missing GOOGLE_API_KEY in .env file")
+
 genai.configure(api_key=GOOGLE_API_KEY)
 
 def interpret_task(task_description):

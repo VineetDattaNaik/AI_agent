@@ -83,15 +83,6 @@ web-task-assistant/
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## License
-
-MIT License - see [`LICENSE`](LICENSE) for details
-
-## Support
-
-- Issues: [GitHub Issues](https://github.com/yourusername/web-task-assistant/issues)
-- Email: your.email@example.com
-
 ## Roadmap
 
 - [ ] Additional chart types

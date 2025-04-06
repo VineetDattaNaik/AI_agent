@@ -383,5 +383,3 @@ if __name__ == "__main__":
     # Save results to a text file
     save_results_to_file(result, task)
 
-
-

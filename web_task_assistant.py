@@ -4,7 +4,6 @@ from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
 import json
 import os
-from dotenv import load_dotenv
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -21,14 +20,8 @@ from PIL import Image as PILImage
 from urllib.parse import urljoin
 import time
 
-# Load environment variables
-load_dotenv()
-
-# Initialize the Gemini client with your API key from environment variable
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-if not GOOGLE_API_KEY:
-    raise ValueError("Missing GOOGLE_API_KEY in .env file")
-
+# Initialize the Gemini client with your API key
+GOOGLE_API_KEY = "AIzaSyD-_wkTNk_dTFbU2KspvpxGr0VOmYArMNA"  # Replace with your actual API key
 genai.configure(api_key=GOOGLE_API_KEY)
 
 def interpret_task(task_description):
@@ -47,7 +40,7 @@ def interpret_task(task_description):
     try:
         return json.loads(response.text)
     except json.JSONDecodeError:
-        # If Gemini doesn't return valid JSON, try to extract it
+      
         response_text = response.text
         if '{' in response_text and '}' in response_text:
             json_str = response_text[response_text.find('{'):response_text.rfind('}')+1]
@@ -67,7 +60,7 @@ def fetch_webpage(url, max_retries=3):
             response.raise_for_status()  # Raise an exception for bad status codes
             return response.text
         except requests.exceptions.RequestException as e:
-            if attempt == max_retries - 1:  # Last attempt
+            if attempt == max_retries - 1: 
                 print(f"Failed to fetch {url} after {max_retries} attempts.")
                 print(f"Error: {str(e)}")
                 # Try an alternative URL if possible
@@ -89,7 +82,7 @@ def get_alternative_url(url):
     # Map of alternative URLs for common sites
     alternatives = {
         'www.fs.usda.gov': 'en.wikipedia.org/wiki/Yana_Caves',
-        # Add more alternatives as needed
+        
     }
     
     for domain, alt in alternatives.items():
@@ -109,7 +102,7 @@ def extract_information(html_content, extraction_targets, task_description):
     if len(page_text) > 10000:
         page_text = page_text[:10000] + "..."
     
-    # Use the latest Gemini model
+    
     model = genai.GenerativeModel('gemini-1.5-pro')
     prompt = f"""
 Task: {task_description}
@@ -132,7 +125,7 @@ Include only the fields that are relevant and available in the content. Format a
     try:
         return json.loads(response.text)
     except json.JSONDecodeError:
-        # If Gemini doesn't return valid JSON, try to extract it
+        
         response_text = response.text
         if '{' in response_text and '}' in response_text:
             json_str = response_text[response_text.find('{'):response_text.rfind('}')+1]
@@ -185,7 +178,7 @@ def download_image(url, max_size=(800, 800)):
         if img.mode in ('RGBA', 'P'):
             img = img.convert('RGB')
         
-        # Resize if too large while maintaining aspect ratio
+        
         if img.size[0] > max_size[0] or img.size[1] > max_size[1]:
             img.thumbnail(max_size, PILImage.Resampling.LANCZOS)
         
@@ -256,7 +249,7 @@ def extract_visual_elements(html_content, base_url):
     # Extract table data that could be visualized
     for table in soup.find_all('table'):
         # Process table data to create chart data
-        # This is a simplified example - adjust based on your needs
+    
         data = {'labels': [], 'values': []}
         for row in table.find_all('tr'):
             cols = row.find_all(['td', 'th'])
@@ -286,7 +279,7 @@ def save_results_to_file(result, task_description, html_content=None, base_url=N
     styles = getSampleStyleSheet()
     elements = []
     
-    # Add custom styles
+   
     styles.add(ParagraphStyle(
         name='CustomTitle',
         parent=styles['Heading1'],
@@ -300,7 +293,7 @@ def save_results_to_file(result, task_description, html_content=None, base_url=N
         spaceAfter=12
     ))
     
-    # Add title and timestamp
+    
     elements.append(Paragraph(f"Task: {task_description}", styles['CustomTitle']))
     elements.append(Paragraph(
         f"Timestamp: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", 
